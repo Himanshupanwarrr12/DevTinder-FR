@@ -1,7 +1,7 @@
-import {BrowserRouter, Routes,Route,Link, createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Mainlayout from './MainLayout';
-import Home from './pages/Home';
 import Login from './pages/Login'
+import Feed from './pages/Feed';
 
 const router  = createBrowserRouter([{
   path:'/',
@@ -9,7 +9,7 @@ const router  = createBrowserRouter([{
   children:[
     {
       path :'/',
-      element: <Home/>
+      element: <Feed/>
     },
     {
       path:'/login',

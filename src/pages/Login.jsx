@@ -1,15 +1,32 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import axios from 'axios'
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { baseUrl } from '../utils/constant';
+
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [emailId, setEmailId] = useState('rahul12@gmail.com');
+  const [password, setPassword] = useState('Rahuldravid@12');
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch()
+const navigate = useNavigate()
+  
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    try {
     e.preventDefault();
-    console.log('Login submitted:', { email, password });
-    // Handle login logic here
+    const res = await axios.post(baseUrl + "/login" , {
+      emailId,
+      password
+    },{withCredentials:true})
+    dispatch({type:"Add user",payload : res.data})
+    return navigate("/")
+    
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -30,8 +47,8 @@ const Login = () => {
             <input
               type="email"
               id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={emailId}
+              onChange={(e) => setEmailId(e.target.value)}
               className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition"
               placeholder="Enter your email"
               required
@@ -85,13 +102,6 @@ const Login = () => {
             © {new Date().getFullYear()} DevTinder. All rights reserved.
           </p>
         </div>
-      </div>
-      
-      {/* Demo Note - Optional */}
-      <div className="mt-6 p-4 bg-gray-800 rounded-lg max-w-md text-center">
-        <p className="text-gray-400 text-sm">
-          This is a demo login page. Try entering any credentials to see the console output.
-        </p>
       </div>
     </div>
   );
