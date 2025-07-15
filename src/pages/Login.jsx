@@ -1,44 +1,39 @@
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import axios from 'axios'
+import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { baseUrl } from '../utils/constant';
-
 
 const Login = () => {
   const [emailId, setEmailId] = useState('rahul12@gmail.com');
   const [password, setPassword] = useState('Rahuldravid@12');
   const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useDispatch()
-const navigate = useNavigate()
-  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     try {
-    e.preventDefault();
-    const res = await axios.post(baseUrl + "/login" , {
-      emailId,
-      password
-    },{withCredentials:true})
-    dispatch({type:"Add user",payload : res.data})
-    return navigate("/")
-    
+      e.preventDefault();
+      const res = await axios.post(baseUrl + "/login", {
+        emailId,
+        password
+      }, { withCredentials: true });
+      dispatch({ type: "Add user", payload: res.data });
+      navigate("/");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-md bg-slate-800 rounded-xl shadow-2xl overflow-hidden border border-gray-700">
-        {/* Header */}
         <div className="bg-gradient-to-r from-purple-900 to-pink-700 p-8 text-center">
           <h1 className="text-3xl font-bold text-white tracking-wide">DevTinder</h1>
           <p className="text-gray-300 mt-2">Connect with developers like you!</p>
         </div>
         
-        {/* Login Form */}
         <form onSubmit={handleSubmit} className="p-8">
           <div className="mb-6">
             <label htmlFor="email" className="block text-gray-300 text-sm font-medium mb-2">
@@ -89,14 +84,13 @@ const navigate = useNavigate()
           <div className="mt-6 text-center">
             <p className="text-gray-400 text-sm">
               Don't have an account?{' '}
-              <a href="#" className="text-pink-500 font-medium hover:text-pink-400 transition">
+              <Link to="/signup" className="text-pink-500 font-medium hover:text-pink-400 transition">
                 Sign Up
-              </a>
+              </Link>
             </p>
           </div>
         </form>
         
-        {/* Footer */}
         <div className="bg-gray-900 p-6 text-center border-t border-gray-800">
           <p className="text-gray-500 text-xs">
             © {new Date().getFullYear()} DevTinder. All rights reserved.
