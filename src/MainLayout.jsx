@@ -31,8 +31,6 @@ function Mainlayout() {
       fetchUser();
     }
   }, []);
-  console.log(user)
-
 
   return (
     <>
