@@ -8,9 +8,10 @@ import UserCard from "../components/UserCard";
 const Feed = () => {
   const dispatch = useDispatch();
   const feed = useSelector((store) => store.feed);
-  console.log(feed)
+  console.log(feed);
 
   const getFeed = async () => {
+    if (feed) return;
     try {
       const res = await axios.get(baseUrl + "/user/feed", {
         withCredentials: true,
@@ -20,19 +21,20 @@ const Feed = () => {
       console.log(error);
     }
   };
-
   useEffect(() => {
     getFeed();
   }, []);
 
   return (
-    <div>
-       {Array.isArray(feed) && feed.length > 0 ? (
-        feed.map((user) => <UserCard key={user.id} user={user} />)
-      ) : (
-        <p>No users to display</p>
-      )}
-    </div> 
+    feed && (
+      <div>
+        {Array.isArray(feed) && feed.length > 0 ? (
+          feed.map((user) => <UserCard key={user.id} user={user} />)
+        ) : (
+          <p>No users to display</p>
+        )}
+      </div>
+    )
   );
 };
 

@@ -1,6 +1,7 @@
 import React from 'react'
 
-function UserCard() {
+function UserCard({user}) {
+  console.log(user)
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
   <figure>
