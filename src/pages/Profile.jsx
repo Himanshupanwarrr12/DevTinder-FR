@@ -1,8 +1,9 @@
 import React from 'react'
+import EditProfile from './EditProfile'
 
 function Profile() {
   return (
-    <div>profile</div>
+    <EditProfile/>
   )
 }
 

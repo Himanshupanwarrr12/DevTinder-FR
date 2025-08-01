@@ -24,7 +24,6 @@ const Login = () => {
         },
         { withCredentials: true }
       );
-      console.log(res)
       dispatch({ type: "Add user", payload: res.data });
       navigate("/");
     } catch (error) {
