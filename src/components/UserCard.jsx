@@ -1,12 +1,11 @@
 import React from 'react';
 
 function UserCard({ user }) {
-  console.log(user)
   if(!user) return <div>No user data available</div>
   const { firstName, photoUrl, about } = user;
 
   return (
-    <div className="flex justify-center items-center  bg-gray-100">
+    <div className="flex justify-center items-center border rounded bg-gray-700">
       <div className="card  w-full max-w-md shadow-lg rounded-lg">
         <figure className="h-48 overflow-hidden rounded-t-lg">
           <img

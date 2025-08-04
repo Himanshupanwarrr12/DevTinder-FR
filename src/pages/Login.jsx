@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { baseUrl } from "../utils/constant";
+import { addUser } from "../features/userSlice";
 
 const Login = () => {
   const [emailId, setEmailId] = useState("rahul12@gmail.com");
@@ -24,7 +25,7 @@ const Login = () => {
         },
         { withCredentials: true }
       );
-      dispatch({ type: "Add user", payload: res.data });
+      dispatch(addUser(res?.data))
       navigate("/");
     } catch (error) {
       setError(error?.response?.data || "something went wrong")

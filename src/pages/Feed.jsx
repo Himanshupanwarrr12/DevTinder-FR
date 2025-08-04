@@ -24,7 +24,6 @@ const Feed = () => {
   }, []);
 
   const feed = useSelector((store)=> store.feed)
-  console.log(feed)
 
   return (
     feed &&(
