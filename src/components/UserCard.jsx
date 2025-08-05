@@ -6,17 +6,27 @@ function UserCard({ user }) {
 
   return (
     <div className="flex justify-center items-center border rounded bg-gray-700">
-      <div className="card  w-full max-w-md shadow-lg rounded-lg">
-        <figure className="h-48 overflow-hidden rounded-t-lg">
+      <div className="card w-full max-w-md shadow-lg rounded-lg">
+        <figure className="h-50 w-50 overflow-hidden rounded-t-lg">
           <img
             src={photoUrl}
             alt="userPhoto"
             className="w-full h-full object-cover"
           />
         </figure>
-        <div className="card-body bg-gray-800 p-3">
-          <h2 className="card-title text-white text-xl font-semibold mb-2">{firstName}</h2>
-          <p className="text-white mb-2">{about}</p>
+        <div className="card-body w-full bg-gray-800 p-3">
+          {/* Added break-words and line-clamp */}
+          <p className="card-title text-white text-xl font-semibold mb-2 break-words line-clamp-1">
+            {firstName}
+          </p>
+          
+          {/* Added break-words and line-clamp with scroll */}
+          <div className="max-h-20 overflow-y-auto mb-2">
+            <p className="text-white font-semibold  break-words">
+              {about}
+            </p>
+          </div>
+          
           <div className="card-actions justify-end">
             <button className="btn btn-primary">Ignore</button>
             <button className="btn btn-secondary">Interested</button>
