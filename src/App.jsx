@@ -3,6 +3,9 @@ import Mainlayout from './MainLayout';
 import Login from './pages/Login'
 import Feed from './pages/Feed';
 import Profile from './pages/profile';
+import SignUp from './pages/SignUp';
+import Connections from './pages/Connections';
+import Requests from './pages/Requests';
 
 const router  = createBrowserRouter([{
   path:'/',
@@ -19,6 +22,18 @@ const router  = createBrowserRouter([{
     {
       path :'/profile',
       element:<Profile/>
+    },
+    {
+      path:'/signup',
+      element:<SignUp/>
+    },
+    {
+      path:'/connections',
+      element:<Connections/>
+    },
+    {
+       path:'/requests',
+      element:<Requests/>
     }
   ]
 }])
