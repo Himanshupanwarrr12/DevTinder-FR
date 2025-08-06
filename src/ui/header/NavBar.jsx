@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {  Link, NavLink } from 'react-router-dom';
 import { baseUrl } from '../../utils/constant';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeUser } from '../../features/userSlice';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,19 +17,22 @@ function NavBar() {
       console.log(error)
     }
   }
+
+  const user = useSelector((store) => store.user)
   
   return (
     <div className="navbar bg-slate-800 shadow-sm">
       <div className="flex-1">
-        <NavLink to='/' className="btn btn-ghost text-white text-2xl">🧑‍💻 DevTinder </NavLink>
+        <NavLink to='/' className="btn btn-ghost text-white text-2xl">🧑‍💻 DevMatch </NavLink>
       </div>
-      <div className="flex p-2.5">
+      <div className="flex justify-center items-center p-2.5">
+        {user &&(  <h1 className='text-white mr-4 ' >Welcome, {user?.firstName}</h1>)}
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn mr-4 btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
               <img
-                alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                alt="your profile"
+                src={user?.photoUrl || "https://i0.wp.com/fdlc.org/wp-content/uploads/2021/01/157-1578186_user-profile-default-image-png-clipart.png.jpeg?fit=880%2C769&ssl=1"}
               />
             </div>
           </div>
@@ -38,13 +41,13 @@ function NavBar() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/profile" className="justify-between">
+              <Link to="/profile" className="justify-between text-xl ">
                 Profile
-                <span className="badge">New</span>
               </Link>
             </li>
-            <li><Link>Settings</Link></li>
-            <li><Link onClick={handleLogout} >Logout</Link></li>
+            <li><Link className=' text-xl'  to="/connections" >Connections</Link></li>
+            <li><Link className=' text-xl' to="/requests" >Requests</Link></li>
+            <li><Link className=' text-xl' onClick={handleLogout} >Logout</Link></li>
           </ul>
         </div>
       </div>
