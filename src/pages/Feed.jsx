@@ -1,5 +1,5 @@
 import axios from "axios";
-import  { useEffect } from "react";
+import { useEffect } from "react";
 import { baseUrl } from "../utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { addFeed } from "../features/feedSlice";
@@ -23,12 +23,16 @@ const Feed = () => {
     getFeed();
   }, []);
 
-  const feed = useSelector((store)=> store.feed)
+  const feed = useSelector((store) => store.feed);
 
   return (
-    feed &&(
-      <div className=" flex justify-center mt-4">
-        {feed.length > 0 && <UserCard  user ={feed[0]} /> }
+    feed && (
+      <div className="flex flex-col items-center mt-4 space-y-6">
+        {feed.length > 0 ? (
+          feed.map((user) => <UserCard key={user._id} user={user} />)
+        ) : (
+          <p className="text-gray-500 text-lg">No users found</p>
+        )}
       </div>
     )
   );
