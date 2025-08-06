@@ -7,7 +7,7 @@ function UserCard({ user }) {
   return (
     <div className="flex justify-center items-center border rounded bg-gray-700">
       <div className="card w-full max-w-md shadow-lg rounded-lg">
-        <figure className="h-50 w-50 overflow-hidden rounded-t-lg">
+        <figure className="h-80 w-80 overflow-hidden rounded-t-lg">
           <img
             src={photoUrl}
             alt="userPhoto"
