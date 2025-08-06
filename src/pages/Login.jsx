@@ -12,7 +12,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [error, setError] = useState('')
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     try {
@@ -25,21 +25,21 @@ const Login = () => {
         },
         { withCredentials: true }
       );
-      dispatch(addUser(res?.data))
+      dispatch(addUser(res?.data));
       navigate("/");
     } catch (error) {
-      setError(error?.response?.data || "something went wrong")
+      setError(error?.response?.data || "something went wrong");
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-md bg-slate-800 rounded-xl shadow-2xl overflow-hidden border border-gray-700">
-        <div className="bg-gradient-to-r from-purple-900 to-pink-700 p-8 text-center">
+    <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 flex flex-col items-center justify-center p-4">
+      <div className="w-full max-w-md bg-gray-900 rounded-xl shadow-2xl overflow-hidden border border-gray-800">
+        <div className="bg-gradient-to-r from-indigo-900/80 to-gray-900 p-8 text-center border-b border-gray-800">
           <h1 className="text-3xl font-bold text-white tracking-wide">
-            DevTinder
+            DevMatch
           </h1>
-          <p className="text-gray-300 mt-2">
+          <p className="text-gray-400 mt-2">
             Connect with developers like you!
           </p>
         </div>
@@ -48,7 +48,7 @@ const Login = () => {
           <div className="mb-6">
             <label
               htmlFor="email"
-              className="block text-gray-300 text-sm font-medium mb-2"
+              className="block text-gray-400 text-sm font-medium mb-2"
             >
               Email
             </label>
@@ -57,7 +57,7 @@ const Login = () => {
               id="email"
               value={emailId}
               onChange={(e) => setEmailId(e.target.value)}
-              className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition"
+              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition"
               placeholder="Enter your email"
               required
             />
@@ -65,7 +65,7 @@ const Login = () => {
           <div className="mb-8">
             <label
               htmlFor="password"
-              className="block text-gray-300 text-sm font-medium mb-2"
+              className="block text-gray-400 text-sm font-medium mb-2"
             >
               Password
             </label>
@@ -75,14 +75,14 @@ const Login = () => {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition pr-12"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition pr-12"
                 placeholder="Enter your password"
                 required
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 px-3 flex items-center text-gray-400 hover:text-white"
+                className="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 hover:text-gray-300 transition-colors"
               >
                 {showPassword ? (
                   <FaEyeSlash className="text-xl" />
@@ -93,22 +93,25 @@ const Login = () => {
             </div>
           </div>
 
-          <p className="text-red-600 text-2xl m-2 p-2 text-center " >{  error.error}</p>
+          {error && (
+            <p className="text-red-500 text-sm mb-4 text-center">
+              {error.error || error}
+            </p>
+          )}
 
           <button
             type="submit"
-            className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium rounded-lg shadow-lg hover:from-purple-700 hover:to-pink-700 transition transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
+            className="w-full py-3 bg-gradient-to-r from-indigo-700 to-indigo-600 text-white font-medium rounded-lg shadow-lg hover:from-indigo-800 hover:to-indigo-700 transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 hover:shadow-indigo-900/30"
           >
             Log In
           </button>
 
-          
           <div className="mt-4 text-center">
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-500 text-sm">
               Don't have an account?{" "}
               <Link
                 to="/signup"
-                className="text-pink-500 font-medium hover:text-pink-400 transition"
+                className="text-indigo-400 font-medium hover:text-indigo-300 transition"
               >
                 Sign Up
               </Link>
@@ -116,9 +119,9 @@ const Login = () => {
           </div>
         </form>
 
-        <div className="bg-gray-900 p-6 text-center border-t border-gray-800">
-          <p className="text-gray-500 text-xs">
-            © {new Date().getFullYear()} DevTinder. All rights reserved.
+        <div className="bg-gray-950 p-4 text-center border-t border-gray-800">
+          <p className="text-gray-600 text-xs">
+            © {new Date().getFullYear()} DevMatch. All rights reserved.
           </p>
         </div>
       </div>
