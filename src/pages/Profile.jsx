@@ -5,7 +5,6 @@ function Profile() {
   const user = useSelector((store) => {
     return store.user;
   });
-  console.log(user)
   //checking if user is not present
   if (!user)
     return (
