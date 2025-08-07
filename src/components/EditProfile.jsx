@@ -1,12 +1,11 @@
 import { useState } from "react";
-import UserCard from "./UserCard";
 import axios from "axios";
 import { baseUrl } from "../utils/constant";
 import { useDispatch } from "react-redux";
 import { addUser } from "../features/userSlice";
+import ProfileCard from "./ProfileCard";
 
 const EditProfile = ({ user }) => {
-  console.log(user);
   const [firstName, setFirstName] = useState(user.firstName);
   const [emailId, setEmailId] = useState(user.emailId);
   const [about, setAbout] = useState(user.about);
@@ -42,7 +41,7 @@ const EditProfile = ({ user }) => {
           <h1 className="mb-5 text-center text-white text-2xl font-bold ">
             Profile Picture
           </h1>
-          <UserCard user={{ firstName, emailId, about, photoUrl }} />
+          <ProfileCard user={{ firstName, emailId, about, photoUrl }} />
         </div>
         <div className="mr-3 gap-x-4 h-min bg-gray-900 overflow-clip border-3  w-auto m-2 p-6  ">
           <h1 className="mb-4 text-center text-2xl text-white font-bold ">
