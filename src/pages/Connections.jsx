@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { baseUrl } from "../utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { showConnections } from "../features/connectionsSlice";
@@ -25,14 +25,16 @@ const Connections = () => {
   }, []);
 
   const connections = useSelector((store) => store.connections);
-  if(!connections) return
-  
+  if (!connections) return;
+
   return (
     connections && (
       <div className="flex flex-col items-center mt-4 space-y-6">
-        <h1 className="text-white font-bold text-2xl" >Connections</h1>
+        <h1 className="text-white font-bold text-2xl">Connections</h1>
         {connections.length > 0 ? (
-          connections.map((connection) =>  <ProfileCard key={connection._id} user={connection} />)
+          connections.map((connection) => (
+            <ProfileCard key={connection._id} user={connection} />
+          ))
         ) : (
           <p className="text-white text-xl text-center ">No connection found</p>
         )}
