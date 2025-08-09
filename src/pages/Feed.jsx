@@ -7,7 +7,7 @@ import UserCard from "../components/UserCard";
 
 const Feed = () => {
   const dispatch = useDispatch();
-  //getting feed form db
+  //getting feed from db
   const getFeed = async () => {
     if (feed) return;
     try {
@@ -31,7 +31,7 @@ const Feed = () => {
         {feed.length > 0 ? (
           feed.map((user) => <UserCard key={user._id} user={user} />)
         ) : (
-          <p className="text-gray-500 text-lg">No users found</p>
+          <p className="text-white text-xl">No users found</p>
         )}
       </div>
     )
