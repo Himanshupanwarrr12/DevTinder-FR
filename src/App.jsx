@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Mainlayout from './MainLayout';
 import Login from './pages/Login'
 import Feed from './pages/Feed';
-import Profile from './pages/profile';
+import Profile from './pages/Profile';
 import SignUp from './pages/SignUp';
 import Connections from './pages/Connections';
 import Requests from './pages/Requests';
